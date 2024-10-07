@@ -8,7 +8,9 @@ const createNote = async (req,res) => {
      const saveNote = new Note({title,content,author:req.userId})
      await saveNote.save()
 
-    res.redirect('/dashboard')
+     res.status(201).json({
+        saveNote
+     })
         
     } catch (Error) {
         console.log(Error)
@@ -46,14 +48,8 @@ const getSingleNote = async (req,res) => {
     }
 }
 
-const deleteNote = async (req,res) => {
-    try {
-        const noteId = req.params.noteId
-        const deleteNote = await Note.findByIdAndDelete(noteId) 
-        res.redirect('/dashboard')
-    } catch (error) {
-        res.redirect(`/dashboard?error=${encodeURIComponent(errorMessage)}`)
-    }
+const deleteNote = () => {
+
 }
 
 const updateNote = async (req,res) => {

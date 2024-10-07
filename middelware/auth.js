@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const Auth = (req,res,next) => {
     //find token from header
-    const token = req.headers['authorization']
+    const token = req.cookies.token || req.headers['authorization']
     //check token is exist or not
     if(!token){
         return res.status(400).json({

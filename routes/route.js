@@ -11,7 +11,7 @@ router.post('/createNote',auth, createNote)
 router.get('/getNotes', auth, getNotes)
 router.get('/note/:noteId',auth, getSingleNote)
 router.put('/updatenote/:noteId',auth, updateNote)
-router.delete('/note/:noteId',auth, deleteNote)
+router.post('/deleteNote/:noteId',auth, deleteNote)
 
 
 

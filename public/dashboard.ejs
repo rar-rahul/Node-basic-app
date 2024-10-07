@@ -1,0 +1,51 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wb application</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/createNote">Create Note</a>
+                </li>
+              
+            </ul>
+        </div>
+    </nav>
+    <div class="text-center"><h3>All Notes List</h3></div>
+   
+    <div class="list-group">
+        <% notes.forEach(note => { %>
+            <div class="list-group-item">
+                <h5><%= note.title %></h5>
+                <p><%= note.content %></p>
+                <form action="/deleteNote/<%= note._id %>" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    
+</body>
+</html>
