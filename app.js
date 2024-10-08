@@ -29,7 +29,6 @@ mongoose.connect(process.env.MONGO_URL)
 //view routes of application
 app.use('/',viewRoutes)
 
-
 //application functional routes
 app.use('/', routes)
 

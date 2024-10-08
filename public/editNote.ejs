@@ -19,6 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
             
+
                 <li class="nav-item">
                     <a class="nav-link" href="/createNote">Create Note</a>
                 </li>
@@ -26,35 +27,23 @@
             </ul>
         </div>
     </nav>
-    <div class="text-center"><h3>All Notes List</h3></div>
-   
+  
+
     <div class="container mt-5">
-        <div class="row justify-content-center">
-          <div class="col-md-6"> <!-- Smaller width column in the center -->
-            <div class="list-group">
-              <% notes.forEach(note => { %>
-                  <div class="list-group-item mb-3"> <!-- Add margin-bottom for spacing between items -->
-                      <h5><%= note.title %></h5>
-                      <p><%= note.content %></p>
-      
-                      <!-- Delete button -->
-                      <form action="/deleteNote/<%= note._id %>" method="post" class="d-inline">
-                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                      </form>
-      
-                      <!-- Edit button -->
-                      <form action="/updateNote/<%= note._id %>" method="get" class="d-inline">
-                          <button type="submit" class="btn btn-primary btn-sm">Edit</button>
-                      </form>
-                  </div>
-              <% }) %>
+        <h1 class="text-center">Create a Note</h1>
+        <form action="/updateNote" method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="title">Note Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter note title" required>
             </div>
-          </div>
-        </div>
-      </div>
-      
-
-
+            <div class="form-group">
+                <label for="content">Note Content</label>
+                <textarea class="form-control" id="content" name="content" rows="4" placeholder="Enter note content" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Update Note</button>
+        </form>
+    </div>
+   
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
