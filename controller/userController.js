@@ -7,9 +7,7 @@ const registerUser = async (req,res) => {
     //check existing user
     const existUser = await User.findOne({email:email})
     if(existUser){
-        res.status(500).json({
-            "message":"User already registered"
-        })
+        return res.render('register', { error: 'User already exist.',isAuth: req.isAuth });
     }
     //hash password using bcrypt
     const hashPassword = await bcrypt.hash(password,10)
@@ -19,12 +17,8 @@ const registerUser = async (req,res) => {
 
     //genrate token using JWT 
     const token = jwt.sign({userId:newUser._id},process.env.TOKENSECRET)
-
-    // res.status(201).json({
-    //     token,
-    //     user:newUser
-    // })
-    res.redirect('/success')
+    res.cookie('token', token, { httpOnly: true });
+    return res.redirect('/success')
 }
 
 const loginUser = async(req,res) => { 
@@ -34,35 +28,24 @@ const loginUser = async(req,res) => {
         //check user is exist or not 
         const user = await User.findOne({email:email})
 
-        console.log(req.body)
-
         if(!user){
-            res.status(401).json({
-                "message":"User Not Found In DB"
-            })
+            return res.render('login', { error: 'User not found. Please try again.',isAuth: req.isAuth });
         }
     
         //check password
         const checkPass = await bcrypt.compare(password,user.password)
         if(!checkPass){
-            res.status(401).json({
-                "message":"Invalid crediential"
-            })
+            return res.render('login', { error: 'Invalid crediential',isAuth: req.isAuth });
         }
         //genrate token
         const token = jwt.sign({userId:user._id},process.env.TOKENSECRET)
-        // res.status(201).json({
-        //     token:token,
-        //     user:user
-        // })
+       
         //store token into cookies
         res.cookie('token', token, { httpOnly: true });
         res.redirect('/dashboard')
         
     } catch (error) {
-        res.status(500).json({
-            message:"Something wrong on server"
-        })
+        return res.render('login', { error: 'Something wrong on server.',isAuth: req.isAuth });
     }
    
 

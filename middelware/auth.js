@@ -4,10 +4,10 @@ const Auth = (req,res,next) => {
     //find token from header
     const token = req.cookies.token || req.headers['authorization']
     //check token is exist or not
-    if(!token){
-        return res.status(400).json({
-            "message":"Token not found"
-        })
+    if (token) {
+        req.isAuth = true; 
+    } else {
+        req.isAuth = false; // Not authenticated
     }
 
     //verify user from token
@@ -19,6 +19,7 @@ const Auth = (req,res,next) => {
         }
 
         req.userId = decoded.userId
+        req.isAuth = true
         next()
 
     })

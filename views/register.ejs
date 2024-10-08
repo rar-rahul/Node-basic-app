@@ -1,0 +1,33 @@
+<!-- public/index.html -->
+
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6"> 
+        <h1 class="text-center">User registration</h1>
+        <% if (error) { %>
+            <div class="alert alert-danger"><%= error %></div> 
+        <% } %>
+        <form id="loginForm" method="post" action="/register">
+            <div class="form-group">
+                <label for="username">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Email:</label>
+                <input type="text" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Mobile:</label>
+                <input type="text" class="form-control" id="mobile" name="mobile" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+        <div class="message" id="message"></div>
+        </div>
+        </div>
+    </div>

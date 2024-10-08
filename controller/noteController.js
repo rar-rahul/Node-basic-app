@@ -52,7 +52,7 @@ const deleteNote = async (req,res) => {
         const deleteNote = await Note.findByIdAndDelete(noteId) 
         res.redirect('/dashboard')
     } catch (error) {
-        res.redirect(`/dashboard?error=${encodeURIComponent(errorMessage)}`)
+        res.redirect(`/dashboard`)
     }
 }
 
@@ -61,15 +61,11 @@ const updateNote = async (req,res) => {
      const noteId = req.params.noteId
      const updateNote = await Note.findByIdAndUpdate(noteId,req.body)
      if(!updateNote){
-        return res.status(401).json({
-            "message":"Note not found"
-        })
+        res.redirect(`/dashboard`)
      }
-     res.status(201).json(updateNote)
+     res.redirect(`/dashboard`)
     } catch (error) {
-        res.status(500).json({
-            message:"Something wrong on server"
-        })
+        res.redirect(`/dashboard`)
     }
 
 }

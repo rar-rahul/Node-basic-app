@@ -10,7 +10,7 @@ router.post('/login', loginUser)
 router.post('/createNote',auth, createNote)
 router.get('/getNotes', auth, getNotes)
 router.get('/note/:noteId',auth, getSingleNote)
-router.put('/updatenote/:noteId',auth, updateNote)
+router.post('/updatenote/:noteId',auth, updateNote)
 router.post('/deleteNote/:noteId',auth, deleteNote)
 
 

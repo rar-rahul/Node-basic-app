@@ -1,0 +1,30 @@
+
+    <!-- Navbar -->
+   
+    <div class="text-center"><h3>All Notes List</h3></div>
+   
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6"> <!-- Smaller width column in the center -->
+            <div class="list-group">
+              <% notes.forEach(note => { %>
+                  <div class="list-group-item mb-3"> <!-- Add margin-bottom for spacing between items -->
+                      <h5><%= note.title %></h5>
+                      <p><%= note.content %></p>
+      
+                      <!-- Delete button -->
+                      <form action="/deleteNote/<%= note._id %>" method="post" class="d-inline">
+                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                      </form>
+      
+                      <!-- Edit button -->
+                      <form action="/editNote/<%= note._id %>" method="get" class="d-inline">
+                          <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+                      </form>
+                  </div>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
